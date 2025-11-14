@@ -1,0 +1,15 @@
+/* write your css here */
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+body,html{
+    overflow-x: hidden;
+}
+
+.homepage-bg{
+    background: url("../src/assets/Images/bghome.svg");
+}
+.active{
+    background-color: white;
+}
