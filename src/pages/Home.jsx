@@ -9,6 +9,7 @@ import TimelineSection from '../Components/core/Homepage/TimelineSection';
 import LearningLanguageSection from '../Components/core/Homepage/LearningLanguageSection';
 import instructorImage from "../assets/Images/Instructor.png"
 import ExploreMore from '../Components/core/Homepage/ExploreMore';
+import Footer from '../Components/common/Footer';
 
 const Home = ()=>{
     return(
@@ -234,6 +235,7 @@ const Home = ()=>{
             </div>
 
             {/* Footer */}
+            <Footer></Footer>
         </div>
     )
 }

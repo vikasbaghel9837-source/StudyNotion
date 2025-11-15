@@ -44,7 +44,7 @@ const ForgotPassword = ()=>{
                         <div>
                             {
                             
-                            !emailSent &&
+                            !emailSent ? (
                                 <form onSubmit={submitHandler}>
                                     <label>
                                         <div className='text-richblack-5 mb-2 text-xs'>
@@ -61,14 +61,20 @@ const ForgotPassword = ()=>{
                                          />
                                     </label>
 
-                                    <div className=' mt-6 text-center py-[12px] px-[24px] rounded-md text-sm flex items-center gap-2 justify-center bg-yellow-50 text-black'>
-                                        <button type='submit' className=''>
-                                            {
-                                                !emailSent ? "Reset Password" : "Resend Email"
-                                            }
+                                
+                                        <button type='submit' className='mt-6 text-center py-[12px] px-[24px] rounded-md text-sm flex items-center gap-2 justify-center bg-yellow-50 text-black w-full'>
+                                            Reset Password
                                         </button>
-                                    </div>
+                                    
                                 </form>
+
+                                ):(
+                                    <form onSubmit={submitHandler}>
+                                        <button type='submit' className='mt-6 text-center py-[12px] px-[24px] rounded-md text-sm flex items-center gap-2 justify-center bg-yellow-50 text-black w-full'>
+                                            Resend email
+                                        </button>
+                                    </form>
+                                )
                             }
                             
                         </div>

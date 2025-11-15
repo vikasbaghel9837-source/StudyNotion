@@ -85,7 +85,7 @@ exports.resetPassword = async(req , res)=>{
         const hashedPass = await bcrypt.hash(password , 10);
 
         // Find and update password
-        await User.findOneAndDelete({token:token},{password:hashedPass},{new:true});
+        await User.findOneAndUpdate({token:token},{password:hashedPass},{new:true});
         // return response
         return res.status(200).json({
             success:true,

@@ -4,6 +4,7 @@ import { resetCart } from "../../slices/cartSlice";
 import {setUser} from "../../slices/profileSlice";
 import {apiConnector} from "../apiconnector"
 import { endpoints } from "../apis";
+// import { resetPasswordBackend } from "../../../server/controllers/ResetPassword";
 
 const {
     SENDOTP_API,
@@ -131,7 +132,7 @@ export function login(email , password , navigate){
     }
 }
 
-export function resetPassword(password , confirmPassword , token , navigate){
+export function resetPassword(password , confirmPassword , token ,setResetComplete){
     return async(dispatch)=>{
         const toastId = toast.loading("Loading....");
 
@@ -151,7 +152,8 @@ export function resetPassword(password , confirmPassword , token , navigate){
             }
 
             toast.success("Password Reset Successfully")
-            navigate("/login")
+            setResetComplete(true);
+            // navigate("/login")
         }
         catch(err){
             console.log("RESETPASSWORD ERROR........." , err);
@@ -204,4 +206,4 @@ export function getResetPasswordToken(email , setEmailSent){
         dispatch(setloading(false))
 
     }
-}
+};
