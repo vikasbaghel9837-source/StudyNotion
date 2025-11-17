@@ -8,7 +8,8 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import ForgotPassword from "./pages/forgotPassword";
 import UpdatePassword from "./pages/UpdatePassword";
-
+import VerifyEmail from "./pages/VerifyEmail";
+import AboutUs from "./pages/AboutUs"
 
 function App() {
   return (
@@ -38,6 +39,18 @@ function App() {
         <Route path="/update-password/:token" element={
           <OpenRoute>
             <UpdatePassword/>
+          </OpenRoute>
+        } />
+
+        <Route path="/verify-email" element={
+          <OpenRoute>
+            <VerifyEmail/>
+          </OpenRoute>
+        } />
+
+        <Route path="/about" element={
+          <OpenRoute>
+            <AboutUs/>
           </OpenRoute>
         } />
 

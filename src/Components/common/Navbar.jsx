@@ -43,7 +43,7 @@ const Navbar = ()=>{
 
     
     return(
-        <div className='h-14 w-screen flex justify-center items-center bg-richblack-800'>
+        <div className='h-14 w-screen flex justify-center items-center bg-richblack-900'>
             
             <div className='flex w-10/12 justify-between items-center'>
 
