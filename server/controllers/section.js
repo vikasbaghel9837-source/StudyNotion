@@ -1,5 +1,5 @@
 const Course = require("../models/Course");
-const Section = require("../models/Section");
+const Section = require("../models/section");
 
 
 // Create a new section
