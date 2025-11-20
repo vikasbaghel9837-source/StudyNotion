@@ -6,7 +6,16 @@ require("dotenv").config();
 exports.auth = async(req , res , next)=>{
     try{
         // extract token
-        const token = req.cookies.token || req.body.token || req.header("Authorization").replace("bearer ", "");
+        let token = null;
+
+        const authHeader = req.header("Authorization");
+        if (authHeader && authHeader.startsWith("Bearer ")) {
+            token = authHeader.split(" ")[1];
+        } else if (req.cookies.token) {
+            token = req.cookies.token;
+        } else if (req.body.token) {
+            token = req.body.token;
+        }
 
         if(!token){
             return res.status(400).json({
@@ -36,7 +45,8 @@ exports.auth = async(req , res , next)=>{
 
         return res.status(400).json({
             success:false,
-            message:"Something went wrong while verifying the token"
+            message:"Something went wrong while verifying the token",
+            error:err
         })
     }
 };
