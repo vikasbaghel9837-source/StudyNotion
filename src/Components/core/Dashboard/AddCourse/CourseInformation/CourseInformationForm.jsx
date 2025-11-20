@@ -6,6 +6,10 @@ import { fetchCourseCategories } from '../../../../../services/operations/course
 import {HiOutlineCurrencyRupee} from "react-icons/hi"
 import ChipInput from './ChipsInput';
 import { MdNavigateNext } from 'react-icons/md';
+import RequirementField from './RequirementField';
+import IconBtn from "../../../../common/IconBtn"
+import Upload from "../Upload"
+
 
 const CourseInformationForm = ()=>{
     const {
@@ -131,14 +135,14 @@ const CourseInformationForm = ()=>{
             />
 
               {/* course Thumbnail image/video */}
-            <Upload
+            {/* <Upload
                 name="courseImage"
                 setValue={setValue}
                 getValues={getValues}
                 register = {register}
                 errors = {errors}
                 editData = {editCourse ? course?.thumbnail : null}
-            />
+            /> */}
             {/* Benefits of the course */}
             <div>
                 <label>Benefits of the Course<sup>*</sup></label>
@@ -157,14 +161,14 @@ const CourseInformationForm = ()=>{
             </div>
 
             {/* Requirements/Instructions */}
-            <RequirementsField
+            {/* <RequirementField
                 name="courseRequirements"
                 label="Requirements/Instructions"
                 register={register}
                 setValue={setValue}
                 getValues={getValues}
                 errors={errors}
-            />
+            /> */}
 
             {/* Next Button */}
             <div>

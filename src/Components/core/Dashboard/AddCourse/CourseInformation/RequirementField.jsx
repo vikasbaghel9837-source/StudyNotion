@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const PublishCourse = ()=>{
+const RequirementField = ()=>{
     return(
         <div>
             
@@ -10,4 +10,4 @@ const PublishCourse = ()=>{
 }
 
 
-export default PublishCourse;
+export default RequirementField;
