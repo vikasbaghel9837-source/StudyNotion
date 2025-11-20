@@ -17,7 +17,7 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 
 //database connect
-database.connectDb();
+database.connectDb(); 
 //middlewares
 app.use(express.json()); 
 app.use(cookieParser());

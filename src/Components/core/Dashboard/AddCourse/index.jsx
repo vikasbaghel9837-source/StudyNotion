@@ -5,7 +5,7 @@ import RenderSteps from './RenderSteps';
 const AddCourse = ()=>{
     return(
         <>
-            <div>
+            <div className='text-white'>
                 <div>
                     <h1>Add Course</h1>
                     <div>

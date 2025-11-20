@@ -40,14 +40,12 @@ const RenderSteps = ()=>{
 
                             {/* Logic for dashes */}
 
-                            {/* Course Details */}
-                            {step === 1 && <CourseInformationForm/>}
-                            {step === 2 && <CourseBuilderForm/>}
-                            {step === 3 && <PublishCourse/>}
                         </>
                     ))
                 }
             </div>
+
+            {step === 1 && <CourseInformationForm/>}
         </>
     )
 }
