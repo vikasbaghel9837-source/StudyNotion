@@ -25,7 +25,7 @@ app.use(
 	cors({
 		origin:[
 			"http://localhost:3000",
-			"https://studynotion-hl1n.onrender.com"
+			"https://studynotion1-one.vercel.app"
 		],
 		credentials:true,
 	})
@@ -62,3 +62,4 @@ app.listen(PORT, () => {
 
 
     
+
