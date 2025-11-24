@@ -18,7 +18,7 @@ exports.SendOTP = async (req , res)=>{
         const checkUserPresent = await User.findOne({email});
 
         if(checkUserPresent){
-            res.status(401).json({
+            return res.status(401).json({
                 success:false,
                 message:"User Already Registered"
             })

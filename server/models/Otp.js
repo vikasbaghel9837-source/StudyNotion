@@ -34,7 +34,10 @@ async function sendVerificationEmail(email,otp){
 OTPSchema.pre("save" , async function(next){
     // Only send an email when a new document is created
 	if (this.isNew) {
-		await sendVerificationEmail(this.email, this.otp);
+		setTimeout(() => {
+            sendVerificationEmail(this.email, this.otp);
+        }, 0);
+
 	}
     next();
 })
