@@ -26,7 +26,7 @@ app.use(
 		origin:[
 			"http://localhost:3000",
 			"https://studynotion1-one.vercel.app"
-		],
+		], 
 		credentials:true,
 	})
 )
