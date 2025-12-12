@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { Toaster } from "react-hot-toast";
-import rootReducer from "./reducers";
+import rootReducer from "./reducer"
      
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

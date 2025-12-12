@@ -1,26 +1,50 @@
-import React from 'react'
-import {FaUsers , FaProjectDiagram} from "react-icons/fa"
+import React from "react";
 
-const CourseCard = ({cardData , CurrCard , setCurrentCard , active})=>{
-    return(
-        <div className={`bg-richblack-800 p-5 w-[24%] cursor-default group hover:bg-white hover:shadow-[11px_11px_0px_-2px_#ffd657] transition-all duration-300`}>
-            <div className='flex flex-col gap-5'>
-                <p className='text-richblack-50 text-xl font-bold group-hover:text-black transition-all duration-300'>{cardData.heading}</p>
-                <p className='text-sm text-richblack-400 mb-20'>{cardData.description}</p>
-            </div>
-            <div className='flex justify-between text-richblack-400 border-t pt-3 border-dashed group-hover:text-caribbeangreen-700'>
-                <div className='flex items-center gap-2'>
-                    <FaUsers/>
-                    Beginner
-                </div>
-                <div className='flex items-center gap-2'>
-                    <FaProjectDiagram/>
-                    6 Lessons
-                </div>
-            </div>
+// Importing React Icons
+import { HiUsers } from "react-icons/hi";
+import { ImTree } from "react-icons/im";
+
+const CourseCard = ({cardData, currentCard, setCurrentCard}) => {
+  return (
+    <div
+      className={`w-[360px] lg:w-[30%] ${
+        currentCard === cardData?.heading
+          ? "bg-white shadow-[12px_12px_0_0] shadow-yellow-50"
+          : "bg-richblack-800"
+      }  text-richblack-25 h-[300px] box-border cursor-pointer`}
+      onClick={() => setCurrentCard(cardData?.heading)}
+    >
+      <div className="border-b-[2px] border-richblack-400 border-dashed h-[80%] p-6 flex flex-col gap-3">
+        <div
+          className={` ${
+            currentCard === cardData?.heading && "text-richblack-800"
+          } font-semibold text-[20px]`}
+        >
+          {cardData?.heading}
         </div>
-    )
-}
 
+        <div className="text-richblack-400">{cardData?.description}</div>
+      </div>
+
+      <div
+        className={`flex justify-between ${
+          currentCard === cardData?.heading ? "text-blue-300" : "text-richblack-300"
+        } px-6 py-3 font-medium`}
+      >
+        {/* Level */}
+        <div className="flex items-center gap-2 text-[16px]">
+          <HiUsers />
+          <p>{cardData?.level}</p>
+        </div>
+
+        {/* Flow Chart */}
+        <div className="flex items-center gap-2 text-[16px]">
+          <ImTree />
+          <p>{cardData?.lessionNumber} Lession</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default CourseCard;

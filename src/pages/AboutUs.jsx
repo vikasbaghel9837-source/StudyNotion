@@ -1,5 +1,5 @@
 import React from 'react'
-import HighlightedText from '../Components/core/Homepage/HighlightedText';
+import HighlightText from '../Components/core/Homepage/HighlightText';
 import aboutImg1 from "../assets/Images/aboutus1.webp"
 import aboutImg2 from "../assets/Images/aboutus2.webp"
 import aboutImg3 from "../assets/Images/aboutus3.webp"
@@ -21,9 +21,9 @@ const AboutUs = ()=>{
                         Driving Innovation in Online Education for a 
                     </h1>
                     <div className='text-2xl font-semibold mb-6'>
-                        <HighlightedText>
+                        <HighlightText>
                             Brighter Future
-                        </HighlightedText>
+                        </HighlightText>
                     </div>
 
                     <p className='text-richblack-400 flex text-center mb-10'>

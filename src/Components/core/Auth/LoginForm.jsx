@@ -5,33 +5,30 @@ import { Link, useNavigate } from "react-router-dom"
 
 import { login } from "../../../services/operations/authAPI"
 
+function LoginForm() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  })
 
-function LoginForm(){
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false)
 
-    const [formData , setFormData] = useState({
-        email:"",
-        password:"",
-    })
+  const { email, password } = formData
 
-    const [showPassword , setShowPassword] = useState(false);
+  const handleOnChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }))
+  }
 
-    const {email , password} = formData
+  const handleOnSubmit = (e) => {
+    e.preventDefault()
+    dispatch(login(email, password, navigate))
+  }
 
-    const handleOnChange = (e)=>{
-        setFormData((prevData)=>({
-            ...prevData,
-            [e.target.name]:e.target.value
-        }))
-    }
-
-    const handleOnSubmit = (e)=>{
-        e.preventDefault();
-        dispatch(login(email , password ,navigate))
-    }
-
-    
   return (
     <form
       onSubmit={handleOnSubmit}
@@ -96,4 +93,4 @@ function LoginForm(){
   )
 }
 
-export default LoginForm;
+export default LoginForm
