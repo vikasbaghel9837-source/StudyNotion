@@ -25,11 +25,13 @@ export default function CourseBuilderForm() {
     formState: { errors },
   } = useForm()
 
-  const { course } = useSelector((state) => state.course)
+  const { course } = useSelector((state) => state.course) 
   const { token } = useSelector((state) => state.auth)
   const [loading, setLoading] = useState(false)
   const [editSectionName, setEditSectionName] = useState(null)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  // console.log("course---------",course);
 
   // handle form submission
   const onSubmit = async (data) => {
@@ -56,6 +58,8 @@ export default function CourseBuilderForm() {
         },
         token
       )
+      
+      console.log("add Section Result :---" , result);
     }
     if (result) {
       // console.log("section result", result)

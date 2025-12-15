@@ -30,7 +30,7 @@ export default function EnrolledCourses() {
         <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
           <div className="spinner"></div>
         </div>
-      ) : !enrolledCourses.length ? (
+      ) : !enrolledCourses?.length ? (
         <p className="grid h-[10vh] w-full place-content-center text-richblack-5">
           You have not enrolled in any course yet.
           {/* TODO: Modify this Empty State */}
@@ -67,8 +67,8 @@ export default function EnrolledCourses() {
                 <div className="flex max-w-xs flex-col gap-2">
                   <p className="font-semibold">{course.courseName}</p>
                   <p className="text-xs text-richblack-300">
-                    {course.courseDescription.length > 50
-                      ? `${course.courseDescription.slice(0, 50)}...`
+                    {course?.courseDescription?.length > 50
+                      ? `${course.courseDescription?.slice(0, 50)}...`
                       : course.courseDescription}
                   </p>
                 </div>

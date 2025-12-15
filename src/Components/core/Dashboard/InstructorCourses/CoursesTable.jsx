@@ -35,9 +35,9 @@ export default function CoursesTable({ courses, setCourses }) {
     }
     setConfirmationModal(null)
     setLoading(false)
-  }
+  };
 
-  // console.log("All Course ", courses)
+  console.log("All Course ", courses);
 
   return (
     <>
@@ -83,7 +83,7 @@ export default function CoursesTable({ courses, setCourses }) {
                       {course.courseName}
                     </p>
                     <p className="text-xs text-richblack-300">
-                      {course.courseDescription.split(" ").length >
+                      {course?.courseDescription?.split(" ").length >
                       TRUNCATE_LENGTH
                         ? course.courseDescription
                             .split(" ")

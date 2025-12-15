@@ -33,10 +33,10 @@ function CourseDetails() {
   const [confirmationModal, setConfirmationModal] = useState(null)
   useEffect(() => {
     // Calling fetchCourseDetails fucntion to fetch the details
-    ;(async () => {
+    (async () => {
       try {
         const res = await fetchCourseDetails(courseId)
-        // console.log("course details res: ", res)
+        console.log("course details res: ", res)
         setResponse(res)
       } catch (error) {
         console.log("Could not fetch Course Details")
@@ -44,7 +44,7 @@ function CourseDetails() {
     })()
   }, [courseId])
 
-  // console.log("response: ", response)
+  console.log("response: ", response)
 
   // Calculating Avg Review count
   const [avgReviewCount, setAvgReviewCount] = useState(0)
@@ -62,7 +62,7 @@ function CourseDetails() {
     setIsActive(
       !isActive.includes(id)
         ? isActive.concat([id])
-        : isActive.filter((e) => e != id)
+        : isActive.filter((e) => e !== id)
     )
   }
 
@@ -84,11 +84,11 @@ function CourseDetails() {
     )
   }
   if (!response.success) {
-    return <Error />
+    return (<Error />)
   }
 
   const {
-    _id: course_id,
+    _id,
     courseName,
     courseDescription,
     thumbnail,

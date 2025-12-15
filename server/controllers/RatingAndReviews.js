@@ -13,6 +13,7 @@ exports.ratingAndReview = async(req,res)=>{
 
         // check if user is enrolled or not
         const courseDetails = await Course.findById(courseId);
+        console.log("Course Details----" , courseDetails);
 
         if(!courseDetails.studentsEnrolled.includes(userId)){
             return res.status(404).json({
@@ -110,7 +111,7 @@ exports.averageRatingAndReview = async(req, res)=>{
 }
 exports.getAllRating = async (req, res) => {
     try{
-            const allReviews = await RatingAndReview.find({})
+            const allReviews = await ratingAndReviews.find({})
                                     .sort({rating: "desc"})
                                     .populate({
                                         path:"user",

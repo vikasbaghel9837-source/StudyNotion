@@ -7,12 +7,13 @@ require("dotenv").config();
 exports.createSubSection = async(req,res)=>{
     try{
         // Fetch data 
-        const {title , timeDuration , desciption , sectionId} = req.body;
+        const {title , description , sectionId} = req.body;
 
         // file/video
-        const video = req.files.videoFile;
+        const video = req.files.video;
+        // console.log("body----------",req.files);
         
-        if(!title || !sectionId || !timeDuration || !desciption || !video){
+        if(!title || !sectionId || !description || !video){
             return res.status(400).json({
                 success:false,
                 message:"All fields are required"
@@ -25,7 +26,6 @@ exports.createSubSection = async(req,res)=>{
         // Create subSection
         const subSectionDetails = await SubSection.create({
             title:title,
-            timeDuration:timeDuration,
             description:description,
             videoUrl:uploadedDetails.secure_url
         });
@@ -38,11 +38,14 @@ exports.createSubSection = async(req,res)=>{
                 }
             },
             {new:true}
-        );
+        )
+        .populate("subSection")
+        ;
 
         return res.status(200).json({
             success:true,
-            message:"Sub section created successfully"
+            message:"Sub section created successfully",
+            data :updatedSection
         })
 
     }

@@ -4,6 +4,7 @@ const Section = require("../models/section");
 
 // Create a new section
 exports.createSection = async(req , res)=>{
+
     try{
         // Fetch data
         const {sectionName , courseId} = req.body;
@@ -12,29 +13,37 @@ exports.createSection = async(req , res)=>{
             return res.status(400).json({
                 success:false,
                 message:"All fields are required"
-            })
+        })
         };
 
         // create entry of section in db
         const newSection = await Section.create({sectionName});
 
         // save section entry in Course details
-        const CourseDetails = await Course.findByIdAndUpdate({courseId} ,
+        const CourseDetails = await Course.findByIdAndUpdate({_id:courseId} ,
                                                             {
                                                                 $push:{
                                                                     courseContent:newSection._id
                                                                 }
-                                                            } , {new:true});
+                                                            } , {new:true})
+                                                            .populate({
+                                                            path: "courseContent",
+                                                            populate: {
+                                                                path: "subSection"
+                                                            }
+                                                            })
         
         return res.status(200).json({
             success:true,
-            message:"Section created successfully"
+            message:"Section created successfully",
+            updatedCourse:CourseDetails
         })
     }
     catch(err){
         return res.status(400).json({
             success:false,
-            message:"Error in creating Section , Please try again"
+            message:"Error in creating Section , Please try again",
+            error:err.message
         })
     }
 };

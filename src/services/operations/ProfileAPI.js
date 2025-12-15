@@ -75,11 +75,12 @@ export async function getInstructorData(token) {
       Authorization: `Bearer ${token}`,
     })
     console.log("GET_INSTRUCTOR_DATA_API API RESPONSE............", response)
-    result = response?.data?.courses
+    result = response?.data?.courses;
+    // console.log("Result-=----" , result);
   } catch (error) {
     console.log("GET_INSTRUCTOR_DATA_API API ERROR............", error)
     toast.error("Could Not Get Instructor Data")
-  }
+  } 
   toast.dismiss(toastId)
   return result
 }

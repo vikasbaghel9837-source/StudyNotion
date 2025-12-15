@@ -55,7 +55,7 @@ export default function CourseInformationForm() {
       setValue("courseImage", course.thumbnail)
     }
     getCategories()
-
+    console.log("CourseCategories :",courseCategories);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -135,24 +135,49 @@ export default function CourseInformationForm() {
       }
       return
     }
+  setLoading(true)
 
+  try { 
     const formData = new FormData()
+
     formData.append("courseName", data.courseTitle)
     formData.append("courseDescription", data.courseShortDesc)
     formData.append("price", data.coursePrice)
     formData.append("tag", JSON.stringify(data.courseTags))
     formData.append("whatYouWillLearn", data.courseBenefits)
-    formData.append("category", data.courseCategory)
+
+    // ✅ IMPORTANT FIX (see problem 2)
+    const selectedCategory = courseCategories.find(
+      (cat) => cat._id === data.courseCategory
+    )
+
+    formData.append("category", selectedCategory._id)
+
+
     formData.append("status", COURSE_STATUS.DRAFT)
-    formData.append("instructions", JSON.stringify(data.courseRequirements))
+    formData.append(
+      "instructions",
+      JSON.stringify(data.courseRequirements)
+    )
     formData.append("thumbnailImage", data.courseImage)
-    setLoading(true)
+
     const result = await addCourseDetails(formData, token)
-    if (result) {
-      dispatch(setStep(2))
-      dispatch(setCourse(result))
+    console.log("result----",result);
+    if (!result) {
+      throw new Error("Course creation failed")
     }
+
+    dispatch(setCourse(result))
+    dispatch(setStep(2))
+  } catch (error) {
+    console.error("CREATE COURSE ERROR:", error)
+    toast.error(error.message || "Failed to create course")
+  } finally {
+    // ✅ THIS LINE FIXES INFINITE LOADING
     setLoading(false)
+  }
+
+
   }
 
   return (
@@ -227,7 +252,7 @@ export default function CourseInformationForm() {
         </label>
         <select
           {...register("courseCategory", { required: true })}
-          defaultValue="vikas"
+          defaultValue=""
           id="courseCategory"
           className="form-style w-full"
         >
@@ -306,6 +331,7 @@ export default function CourseInformationForm() {
         <IconBtn
           disabled={loading}
           text={!editCourse ? "Next" : "Save Changes"}
+          
         >
           <MdNavigateNext />
         </IconBtn>

@@ -5,6 +5,7 @@ import rzpLogo from "../../assets/Logo/rzp_logo.png"
 import { setPaymentLoading } from "../../slices/courseSlice";
 import { resetCart } from "../../slices/cartSlice";
 
+// require("dotenv").config();
 
 const {COURSE_PAYMENT_API, COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API} = studentEndpoints;
 
@@ -12,7 +13,7 @@ function loadScript(src) {
     return new Promise((resolve) => {
         const script = document.createElement("script");
         script.src = src;
-
+ 
         script.onload = () => {
             resolve(true);
         }
@@ -46,24 +47,26 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
             throw new Error(orderResponse.data.message);
         }
         console.log("PRINTING orderResponse", orderResponse);
+        console.log("RazorPay API key----" , process.env.REACT_APP_RAZORPAY_KEY);
         //options
-        const options = {
-            key: process.env.RAZORPAY_KEY,
-            currency: orderResponse.data.message.currency,
-            amount: `${orderResponse.data.message.amount}`,
-            order_id:orderResponse.data.message.id,
+        const options = { 
+            key: process.env.REACT_APP_RAZORPAY_KEY,
+            currency: orderResponse.data?.data?.currency,
+            amount: orderResponse.data?.data?.amount,
+            order_id:orderResponse.data?.data?.id,
             name:"StudyNotion",
             description: "Thank You for Purchasing the Course",
             image:rzpLogo,
-            prefill: {
+            prefill: { 
                 name:`${userDetails.firstName}`,
                 email:userDetails.email
             },
             handler: function(response) {
                 //send successful wala mail
-                sendPaymentSuccessEmail(response, orderResponse.data.message.amount,token );
+                console.log("Payment Response -----" , response);
                 //verifyPayment
                 verifyPayment({...response, courses}, token, navigate, dispatch);
+                sendPaymentSuccessEmail(response, orderResponse.data.amount,token );
             }
         }
         //miss hogya tha 
@@ -93,6 +96,7 @@ async function sendPaymentSuccessEmail(response, amount, token) {
         })
     }
     catch(error) {
+        console.error(error);
         console.log("PAYMENT SUCCESS EMAIL ERROR....", error);
     }
 }
@@ -109,7 +113,7 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
         if(!response.data.success) {
             throw new Error(response.data.message);
         }
-        toast.success("payment Successful, ypou are addded to the course");
+        toast.success("payment Successful, you are addded to the course");
         navigate("/dashboard/enrolled-courses");
         dispatch(resetCart());
     }   

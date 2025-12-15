@@ -16,7 +16,7 @@ exports.auth = async(req , res , next)=>{
         } else if (req.body.token) {
             token = req.body.token;
         }
-
+        console.log("AUTH MIDDLEWARE: req.headers.authorization =", req.headers.authorization);
         if(!token){
             return res.status(400).json({
                 success:false,
@@ -30,6 +30,7 @@ exports.auth = async(req , res , next)=>{
 
             console.log(decode);
             req.user = decode;
+            console.log("AUTH OK - user:", req.user);
         }
         catch(err){
             console.log(err);
@@ -59,6 +60,7 @@ exports.isStudent = async(req , res , next)=>{
                 message:"This is a Protected route for Student Only"
             })
         }
+        next();
     }
     catch(err){
         console.log(err);
@@ -78,6 +80,7 @@ exports.isInstructor = async(req , res , next)=>{
                 message:"This is a Protected route for Instructor Only"
             })
         }
+        next();
     }
     catch(err){
         console.log(err);
@@ -97,6 +100,7 @@ exports.isAdmin = async(req , res , next)=>{
                 message:"This is a Protected route for Admin Only"
             })
         }
+        next();
     }
     catch(err){
         console.log(err);

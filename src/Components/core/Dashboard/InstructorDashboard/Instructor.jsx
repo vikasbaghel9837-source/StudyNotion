@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { fetchInstructorCourses } from '../../../../services/operations/courseDetailsAPI';
-import { getInstructorData } from '../../../../services/operations/profileAPI';
+import { getInstructorData } from '../../../../services/operations/ProfileAPI';
 import InstructorChart from './InstructorChart';
 import { Link } from 'react-router-dom';
 
@@ -16,13 +16,15 @@ export default function Instructor() {
       ;(async () => {
         setLoading(true)
         const instructorApiData = await getInstructorData(token)
+        console.log("Instructor API Data---",instructorApiData)
         const result = await fetchInstructorCourses(token)
-        console.log(instructorApiData)
         if (instructorApiData.length) setInstructorData(instructorApiData)
         if (result) {
           setCourses(result)
         }
+        console.log("Course in Instructor api ------" , result);
         setLoading(false)
+
       })()
     }, [])
   
@@ -35,7 +37,7 @@ export default function Instructor() {
       (acc, curr) => acc + curr.totalStudentsEnrolled,
       0
     )
-  
+    
     return (
       <div>
         <div className="space-y-2">
@@ -109,7 +111,7 @@ export default function Instructor() {
                       </p>
                       <div className="mt-1 flex items-center space-x-2">
                         <p className="text-xs font-medium text-richblack-300">
-                          {course.studentsEnroled.length} students
+                          {course?.studentsEnrolled?.length ?? 0} students
                         </p>
                         <p className="text-xs font-medium text-richblack-300">
                           |
