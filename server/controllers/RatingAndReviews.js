@@ -13,7 +13,7 @@ exports.ratingAndReview = async(req,res)=>{
 
         // check if user is enrolled or not
         const courseDetails = await Course.findById(courseId);
-        console.log("Course Details----" , courseDetails);
+        // console.log("Course Details----" , courseDetails);
 
         if(!courseDetails.studentsEnrolled.includes(userId)){
             return res.status(404).json({

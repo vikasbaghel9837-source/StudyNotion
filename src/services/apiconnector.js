@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-    baseURL: "http://localhost:4000/api/v1",
+    baseURL: "https://studynotion-1-uhtj.onrender.com/api/v1",
 });
 
 export const apiConnector = (method , url , bodyData , headers , params )=>{
