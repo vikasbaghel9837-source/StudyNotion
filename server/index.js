@@ -31,6 +31,8 @@ app.use(
 			"https://study-notion-neon-ten.vercel.app"
 		], 
 		credentials:true,
+		methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    	allowedHeaders: ["Content-Type", "Authorization"],
 	})
 )
 
