@@ -76,7 +76,7 @@ router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
 // Get all Registered Courses
 router.get("/getAllCourses", getAllCourses)
 // Get Details for a Specific Courses
-router.get("/getCourseDetails/:courseId", getCourseDetails)
+router.get("/getCourseDetails", getCourseDetails)
 // Get Details for a Specific Courses
 router.post("/getFullCourseDetails", auth, getFullCourseDetails)
 // To Update Course Progress
@@ -101,5 +101,6 @@ router.post("/getCategoryPageDetails", categoryPageDetails)
 router.post("/createRating", auth, isStudent, ratingAndReview)
 router.get("/getAverageRating", averageRatingAndReview)
 router.get("/getReviews", getAllRating)
+
 
 module.exports = router
