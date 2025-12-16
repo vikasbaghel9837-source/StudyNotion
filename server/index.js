@@ -28,7 +28,7 @@ app.use(
 	cors({
 		origin:[
 			"http://localhost:3000",
-			"https://study-notion-neon-ten.vercel.app/"
+			"https://study-notion-neon-ten.vercel.app"
 		], 
 		credentials:true,
 	})
@@ -70,4 +70,5 @@ app.listen(PORT, () => {
 
 
     
+
 
