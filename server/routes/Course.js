@@ -76,7 +76,7 @@ router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
 // Get all Registered Courses
 router.get("/getAllCourses", getAllCourses)
 // Get Details for a Specific Courses
-router.get("/getCourseDetails", getCourseDetails)
+router.get("/getCourseDetails/:courseId", getCourseDetails)
 // Get Details for a Specific Courses
 router.post("/getFullCourseDetails", auth, getFullCourseDetails)
 // To Update Course Progress
@@ -104,3 +104,4 @@ router.get("/getReviews", getAllRating)
 
 
 module.exports = router
+
