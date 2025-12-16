@@ -1,5 +1,5 @@
 const Profile = require("../models/Profile")
-const CourseProgress = require("../models/CourseProgress")
+const CourseProgress = require("../models/courseProgress")
 
 const Course = require("../models/Course")
 const User = require("../models/User")
@@ -236,3 +236,4 @@ exports.instructorDashboard = async (req, res) => {
     res.status(500).json({ message: "Server Error" })
   }
 }
+
