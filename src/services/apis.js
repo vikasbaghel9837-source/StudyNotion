@@ -1,4 +1,4 @@
-const BASE_URL = "https://studynotion-1-uhtj.onrender.com/api/v1"
+const BASE_URL = "https://studynotion-1-obbz.onrender.com/api/v1"
 
 // AUTH ENDPOINTS
 export const endpoints = {
