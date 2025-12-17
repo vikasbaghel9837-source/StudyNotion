@@ -3,4 +3,4 @@ StudyNotion is an Edtech platform built on MERN Stack
 
 
 # Deployment Link
-https://studynotion1-one.vercel.app/
+https://study-notion-phi-kohl.vercel.app/
